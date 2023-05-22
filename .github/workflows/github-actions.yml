@@ -2,9 +2,9 @@ name: Run a notebook in databricks on push
 
 on:
   push:
-    branches: [ "databricks-model" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "databricks-model" ]
+    branches: [ "main" ]
 
 jobs:
  run-databricks-notebook:
