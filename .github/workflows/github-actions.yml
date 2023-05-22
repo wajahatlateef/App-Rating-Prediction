@@ -1,0 +1,27 @@
+name: Run a notebook in databricks on push
+
+on:
+  push:
+    branches: [ "databricks-model" ]
+  pull_request:
+    branches: [ "databricks-model" ]
+
+jobs:
+ run-databricks-notebook:
+   runs-on: ubuntu-latest
+   steps:
+     - name: Checkout repo
+       uses: actions/checkout@v2
+     - name: Run a databricks notebook
+       uses: databricks/run-notebook@v0
+       with:
+         local-notebook-path: notebooks/App Rating Prediction.ipynb
+         databricks-host: https://dbc-3a6dde3d-bd24.cloud.databricks.com/
+         databricks-token: ${{ secrets.DATABRICKS_TOKEN }}
+         git-commit: ${{ github.event.pull_request.head.sha }}
+         new-cluster-json: >
+           {
+             "num_workers": 1,
+             "spark_version": "10.4.x-scala2.12",
+             "node_type_id": "i3.xlarge"
+           }
