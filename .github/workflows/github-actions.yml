@@ -10,7 +10,7 @@ jobs:
  run-databricks-notebook:
    runs-on: ubuntu-latest
    steps:
-     - name: Checkout repo
+     - name: Checkout repo to DEV
        uses: actions/checkout@v2
      - name: Run a databricks notebook
        uses: databricks/run-notebook@v0
